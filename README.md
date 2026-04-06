@@ -42,8 +42,8 @@
 
 1. **Clone the Genify repository**
    ```bash
-git clone https://github.com/Jousure/Genify.git
-cd Genify
+   git clone https://github.com/Jousure/Genify.git
+   cd Genify
 ```
 
 2. **Backend Setup**

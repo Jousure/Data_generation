@@ -1,4 +1,4 @@
-# 🚀 Genify - Advanced Data Generation Platform
+# Genify - Advanced Data Generation Platform
 
 **🚧 Work in Progress - Currently Under Development 🚧**
 
@@ -15,27 +15,7 @@
 
 ### 📋 Supported Data Types
 
-📖 **[View Complete Data Types Reference](./frontend/DATA_TYPES.md)** - Comprehensive guide to all 15+ available data generation categories including:
-
-- Location & Address Data
-- Person & Demographics  
-- Business & Finance
-- Technology & Digital
-- Healthcare & Medical
-- Automotive
-- Construction
-- Entertainment & Media
-- Food & Grocery
-- Products & Retail
-- Identification Numbers
-- Aviation
-- Education
-- Professional Skills
-- Nature & Biology
-- Data & Programming
-- Text & Content
-- Statistical Distributions
-- Dates & Times
+📖 **[View Complete Data Types Reference](./frontend/DATA_TYPES.md)** - Comprehensive guide to all the available data generation categories
 
 ## 🏗️ Architecture
 
@@ -191,34 +171,6 @@ npm test
 - **Validation**: Improve data validation and schema enforcement
 - **Documentation**: Help improve documentation and examples
 
-## 🗺️ Roadmap
-
-### ✅ Completed
-- [x] Basic data generation with 15+ data types
-- [x] Modern React UI with Tailwind CSS
-- [x] Real-time preview functionality
-- [x] CSV export capability
-- [x] Dark/light theme support
-- [x] Scalable generation up to 100,000+ records
-- [x] AI-powered schema generation
-
-### 🚧 In Progress
-- [ ] User authentication and profiles
-- [ ] Saved dataset templates
-- [ ] Advanced filtering and search
-- [ ] Data validation rules
-- [ ] Batch operations
-
-### 📋 Planned
-- [ ] Additional export formats (JSON, Excel, Parquet)
-- [ ] Data relationship generation
-- [ ] API rate limiting and quotas
-- [ ] Docker containerization
-- [ ] Cloud deployment options
-- [ ] Advanced analytics and reporting
-- [ ] Data privacy and GDPR compliance
-- [ ] Enterprise features and SSO
-
 ## 🐛 Known Issues
 
 - Large dataset generation (>50,000 records) may take several minutes
@@ -229,14 +181,6 @@ npm test
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- [Faker](https://github.com/joke2k/faker) - Excellent fake data generation library
-- [FastAPI](https://fastapi.tiangolo.com/) - Modern, fast web framework for building APIs
-- [React](https://reactjs.org/) - JavaScript library for building user interfaces
-- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
-- [Vite](https://vitejs.dev/) - Next generation frontend tooling
 
 ## 📞 Support
 

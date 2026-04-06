@@ -44,13 +44,13 @@
    ```bash
    git clone https://github.com/Jousure/Genify.git
    cd Genify
-```
+   ```
 
 2. **Backend Setup**
    ```bash
    cd backend
    pip install -r requirements.txt
-```
+   ```
 
 3. **Frontend Setup**
    ```bash

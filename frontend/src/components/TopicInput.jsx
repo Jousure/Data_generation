@@ -1,28 +1,33 @@
 export default function TopicInput({ topic, setTopic, onSubmit, darkMode }) {
   return (
     <div className="space-y-4">
-      <textarea
-        className={`w-full p-4 border-2 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200 resize-none font-sans ${
-          darkMode 
-            ? 'bg-primary-700 border-primary-600 text-white placeholder-primary-400' 
-            : 'bg-white border-primary-200 text-primary-900 placeholder-primary-500'
-        }`}
-        rows={4}
-        placeholder="Describe your dataset... (e.g., 'Customer data for an e-commerce platform' or 'Employee records for a tech company')"
-        value={topic}
-        onChange={(e) => setTopic(e.target.value)}
-      />
+      <div>
+        <label className={`block text-sm font-semibold mb-2 text-theme theme-transition`}>
+          Describe your dataset
+        </label>
+        <textarea
+          value={topic}
+          onChange={(e) => setTopic(e.target.value)}
+          placeholder="e.g., Generate customer data with names, emails, and purchase history..."
+          className={`input resize-none h-32 theme-transition ${
+            darkMode 
+              ? 'bg-primary-800 border-theme-accent2/30 text-theme placeholder-theme-accent2/60' 
+              : 'bg-primary-50 border-theme-accent1/30 text-theme placeholder-theme-accent1/60'
+          }`}
+          rows={4}
+        />
+      </div>
       <button
         onClick={onSubmit}
         disabled={!topic.trim()}
-        className={`w-full px-6 py-3 rounded-xl font-medium transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed ${
+        className={`btn btn-primary w-full theme-transition ${
           darkMode 
-            ? 'bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white shadow-lg hover:shadow-xl' 
-            : 'bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-primary-900 shadow-lg hover:shadow-xl'
+            ? 'bg-gradient-to-r from-theme-accent1 to-theme-accent2 hover:from-theme-accent2 hover:to-theme-hover text-theme shadow-lg hover:shadow-xl' 
+            : 'bg-gradient-to-r from-theme-button to-theme-accent2 hover:from-theme-accent1 hover:to-theme-button text-theme shadow-lg hover:shadow-xl'
         }`}
       >
         <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.293l-3-3a1 1 0 00-1.414 1.414L10.586 9.5H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clipRule="evenodd" />
+          <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
         </svg>
         Generate Schema
       </button>

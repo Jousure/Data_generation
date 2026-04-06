@@ -19,7 +19,17 @@ export default {
           700: 'var(--color-primary-700)',
           800: 'var(--color-primary-800)',
           900: 'var(--color-primary-900)',
-        }
+        },
+        theme: {
+          bg: 'var(--bg)',
+          text: 'var(--text)',
+          accent1: 'var(--accent1)',
+          accent2: 'var(--accent2)',
+          button: 'var(--button)',
+          hover: 'var(--hover)',
+        },
+        accent1: 'var(--accent1)',
+        accent2: 'var(--accent2)',
       },
       fontFamily: {
         sans: ['var(--font-sans)'],

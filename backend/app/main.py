@@ -6,6 +6,7 @@ import uvicorn
 from app.api.schema import router as schema_router
 from app.api.preview import router as preview_router
 from app.api.generate import router as generate_router
+from app.api.data_types import router as data_types_router
 
 app = FastAPI(
     title="Dataset Generator",
@@ -36,6 +37,7 @@ app.mount("/generated", StaticFiles(directory="generated"), name="generated")
 app.include_router(schema_router, prefix="/schema")
 app.include_router(preview_router, prefix="/preview")
 app.include_router(generate_router, prefix="/generate")
+app.include_router(data_types_router, prefix="/data-types")
 
 @app.get("/")
 def health():

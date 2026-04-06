@@ -5,6 +5,7 @@ import PreviewTable from "./components/PreviewTable";
 import GenerateButton from "./components/GenerateButton";
 import RowSelector from "./components/RowSelector";
 import DarkModeToggle from "./components/DarkModeToggle";
+import DataTypesReference from "./components/DataTypesReference";
 import { getSchema, getPreview } from "./api/backend";
 
 export default function App() {
@@ -92,39 +93,29 @@ export default function App() {
   }
 
   return (
-    <div className={`min-h-screen font-sans antialiased transition-colors duration-300 ${
-      darkMode 
-        ? 'bg-primary-900 text-primary-50' 
-        : 'bg-primary-50 text-primary-900'
-    }`}>
+    <div className="min-h-screen bg-theme text-theme font-sans antialiased theme-transition">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
-        <header className="mb-8 animate-fade-in">
-          <div className={`rounded-2xl shadow-2xl border overflow-hidden ${
-            darkMode 
-              ? 'bg-primary-800 border-primary-700' 
-              : 'bg-white border-primary-200'
-          }`}>
+        <header className="mb-8 animate-fadeIn">
+          <div className="card card-hover animate-slideUp">
             <div className="p-6 sm:p-8">
               <div className="flex justify-between items-start sm:items-center gap-4">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-3">
-                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center">
-                      <svg className="w-6 h-6 text-primary-50" fill="currentColor" viewBox="0 0 20 20">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-theme-accent1 to-theme-accent2 flex items-center justify-center hover-lift">
+                      <svg className="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
                       </svg>
                     </div>
-                    <h1 className={`text-2xl sm:text-3xl lg:text-4xl font-bold ${
-                      darkMode ? 'text-white' : 'text-primary-900'
-                    }`}>
-                      Dataset Generator
-                    </h1>
+                    <div>
+                      <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-theme mb-2">
+                        Dataset Generator
+                      </h1>
+                      <p className="text-theme opacity-80 text-lg">
+                        Professional data generation with realistic, context-aware datasets
+                      </p>
+                    </div>
                   </div>
-                  <p className={`text-sm sm:text-base ${
-                    darkMode ? 'text-primary-300' : 'text-primary-600'
-                  }`}>
-                    Professional data generation with realistic, context-aware datasets
-                  </p>
                 </div>
                 <DarkModeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
               </div>
@@ -134,11 +125,7 @@ export default function App() {
 
         {/* Error Alert */}
         {error && (
-          <div className={`mb-6 p-4 rounded-xl border flex items-start gap-3 animate-slide-up ${
-            darkMode 
-              ? 'bg-red-900/20 border-red-800 text-red-300' 
-              : 'bg-red-50 border-red-200 text-red-800'
-          }`}>
+          <div className="mb-6 p-4 rounded-xl border flex items-start gap-3 animate-slideUp card bg-red-50 border-red-200 text-red-800 dark:bg-red-900/20 dark:border-red-800 dark:text-red-300">
             <svg className="w-5 h-5 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
             </svg>
@@ -154,16 +141,10 @@ export default function App() {
           {/* Left Column - Input & Controls */}
           <div className="lg:col-span-1 space-y-6">
             {/* Topic Input */}
-            <section className={`rounded-xl shadow-lg border overflow-hidden animate-slide-up ${
-              darkMode 
-                ? 'bg-primary-800 border-primary-700' 
-                : 'bg-white border-primary-200'
-            }`}>
+            <section className="card card-hover animate-slideUp">
               <div className="p-6">
-                <h2 className={`text-lg font-semibold mb-4 flex items-center gap-2 ${
-                  darkMode ? 'text-white' : 'text-primary-900'
-                }`}>
-                  <svg className="w-5 h-5 text-primary-500" fill="currentColor" viewBox="0 0 20 20">
+                <h2 className="text-lg font-semibold mb-4 flex items-center gap-2 text-theme">
+                  <svg className="w-5 h-5 text-accent1" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
                   </svg>
                   Dataset Description
@@ -174,68 +155,76 @@ export default function App() {
 
             {/* Schema Controls */}
             {columns.length > 0 && (
-              <section className={`rounded-xl shadow-lg border overflow-hidden animate-slide-up ${
-                darkMode 
-                  ? 'bg-primary-800 border-primary-700' 
-                  : 'bg-white border-primary-200'
-              }`}>
+              <section className="card card-hover animate-slideUp">
                 <div className="p-6">
-                  <h2 className={`text-lg font-semibold mb-4 flex items-center gap-2 ${
-                    darkMode ? 'text-white' : 'text-primary-900'
-                  }`}>
-                    <svg className="w-5 h-5 text-primary-500" fill="currentColor" viewBox="0 0 20 20">
+                  <h2 className="text-lg font-semibold mb-4 flex items-center gap-2 text-theme">
+                    <svg className="w-5 h-5 text-accent1" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
                     </svg>
                     Schema Columns
-                    <span className={`ml-2 text-xs px-2 py-1 rounded-full ${
-                      darkMode ? 'bg-primary-700 text-primary-300' : 'bg-primary-100 text-primary-700'
-                    }`}>
+                    <span className="ml-2 text-xs px-2 py-1 rounded-full bg-accent1 text-white">
                       {columns.length}
                     </span>
                   </h2>
                   <ColumnEditor columns={columns} setColumns={setColumns} darkMode={darkMode} />
-                  <button
-                    onClick={handleSchema}
-                    disabled={loading}
-                    className={`w-full mt-4 px-4 py-3 rounded-xl font-medium transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed ${
-                      darkMode 
-                        ? 'bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white shadow-lg hover:shadow-xl' 
-                        : 'bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-primary-900 shadow-lg hover:shadow-xl'
-                    }`}
-                  >
-                    {loading ? (
-                      <>
-                        <svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                        </svg>
-                        <span className="ml-2">Generating schema...</span>
-                      </>
-                    ) : (
-                      <>
-                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707 8.293l-3-3a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414l-3-3a1 1 0 01-1.414 1.414l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
-                        </svg>
-                        <span className="ml-2">Generate Schema</span>
-                      </>
-                    )}
-                  </button>
+                  
+                  <div className="space-y-3 mt-6">
+                    <button
+                      onClick={handlePreview}
+                      disabled={loading}
+                      className="btn btn-gradient w-full"
+                    >
+                      {loading ? (
+                        <>
+                          <svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                          </svg>
+                          <span>Generating preview...</span>
+                        </>
+                      ) : (
+                        <>
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.293a1 1 0 00-1.414 1.414L14.586 10l-1.293 1.293a1 1 0 101.414 1.414L16 11.414l1.293 1.293a1 1 0 001.414-1.414L17.414 10l1.293-1.293a1 1 0 00-1.414-1.414L16 8.586l-1.293-1.293z" clipRule="evenodd" />
+                          </svg>
+                          <span>Preview Data</span>
+                        </>
+                      )}
+                    </button>
+                    
+                    <button
+                      onClick={handleSchema}
+                      disabled={loading}
+                      className="btn btn-secondary w-full"
+                    >
+                      {loading ? (
+                        <>
+                          <svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                          </svg>
+                          <span>Regenerating schema...</span>
+                        </>
+                      ) : (
+                        <>
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clipRule="evenodd" />
+                          </svg>
+                          <span>Regenerate Schema</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
                 </div>
               </section>
             )}
 
             {/* Export Controls */}
             {preview.length > 0 && (
-              <section className={`rounded-xl shadow-lg border overflow-hidden animate-slide-up ${
-                darkMode 
-                  ? 'bg-primary-800 border-primary-700' 
-                  : 'bg-white border-primary-200'
-              }`}>
+              <section className="card card-hover animate-slideUp">
                 <div className="p-6">
-                  <h2 className={`text-lg font-semibold mb-4 flex items-center gap-2 ${
-                    darkMode ? 'text-white' : 'text-primary-900'
-                  }`}>
-                    <svg className="w-5 h-5 text-primary-500" fill="currentColor" viewBox="0 0 20 20">
+                  <h2 className="text-lg font-semibold mb-4 flex items-center gap-2 text-theme">
+                    <svg className="w-5 h-5 text-accent1" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
                     </svg>
                     Export Options
@@ -249,23 +238,15 @@ export default function App() {
 
           {/* Right Column - Preview */}
           <div className="lg:col-span-2">
-            <section className={`rounded-xl shadow-lg border overflow-hidden animate-slide-up ${
-              darkMode 
-                ? 'bg-primary-800 border-primary-700' 
-                : 'bg-white border-primary-200'
-            }`}>
+            <section className="card card-hover animate-slideUp">
               <div className="p-6">
-                <h2 className={`text-lg font-semibold mb-4 flex items-center gap-2 ${
-                  darkMode ? 'text-white' : 'text-primary-900'
-                }`}>
-                  <svg className="w-5 h-5 text-primary-500" fill="currentColor" viewBox="0 0 20 20">
+                <h2 className="text-lg font-semibold mb-4 flex items-center gap-2 text-theme">
+                  <svg className="w-5 h-5 text-accent1" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.293a1 1 0 00-1.414 1.414L14.586 10l-1.293 1.293a1 1 0 101.414 1.414L16 11.414l1.293 1.293a1 1 0 001.414-1.414L17.414 10l1.293-1.293a1 1 0 00-1.414-1.414L16 8.586l-1.293-1.293z" clipRule="evenodd" />
                   </svg>
                   Data Preview
                   {preview.length > 0 && (
-                    <span className={`ml-2 text-xs px-2 py-1 rounded-full ${
-                      darkMode ? 'bg-primary-700 text-primary-300' : 'bg-primary-100 text-primary-700'
-                    }`}>
+                    <span className="ml-2 text-xs px-2 py-1 rounded-full bg-accent2 text-white">
                       {preview.length} rows
                     </span>
                   )}
@@ -273,19 +254,13 @@ export default function App() {
                 
                 {preview.length === 0 ? (
                   <div className="text-center py-12">
-                    <svg className={`w-16 h-16 mx-auto mb-4 ${
-                      darkMode ? 'text-primary-600' : 'text-primary-300'
-                    }`} fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.293a1 1 0 00-1.414 1.414L14.586 10l-1.293 1.293a1 1 0 101.414 1.414L16 11.414l1.293 1.293a1 1 0 001.414-1.414L17.414 10l1.293-1.293a1 1 0 00-1.414-1.414L16 8.586l-1.293-1.293z" clipRule="evenodd" />
-                    </svg>
-                    <p className={`text-lg font-medium mb-2 ${
-                      darkMode ? 'text-primary-300' : 'text-primary-600'
-                    }`}>
-                      No data to preview
-                    </p>
-                    <p className={`text-sm ${
-                      darkMode ? 'text-primary-400' : 'text-primary-500'
-                    }`}>
+                    <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-surface flex items-center justify-center">
+                      <svg className="w-10 h-10 text-accent2 opacity-60" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.293a1 1 0 00-1.414 1.414L14.586 10l-1.293 1.293a1 1 0 101.414 1.414L16 11.414l1.293 1.293a1 1 0 001.414-1.414L17.414 10l1.293-1.293a1 1 0 00-1.414-1.414L16 8.586l-1.293-1.293z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <h3 className="text-xl font-semibold mb-2 text-theme">No data to preview</h3>
+                    <p className="text-theme opacity-70">
                       Generate a schema and click "Preview Data" to see results
                     </p>
                   </div>
@@ -297,6 +272,9 @@ export default function App() {
           </div>
         </div>
       </div>
+      
+      {/* Data Types Reference */}
+      <DataTypesReference darkMode={darkMode} />
     </div>
   );
 }

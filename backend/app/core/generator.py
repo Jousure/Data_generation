@@ -1,6 +1,7 @@
 import random
 from faker import Faker
 from datetime import datetime, timedelta
+from .data_types import generate_data_value, get_supported_data_types
 
 fake = Faker()
 
@@ -115,6 +116,13 @@ def generate_value(column: str, domain: str = None):
     """Generate a single value for a column, optionally using domain-specific generators."""
     col = column.lower()
     
+    # ---------- COMPREHENSIVE DATA TYPES ----------
+    try:
+        # Try to use the comprehensive data types first
+        return generate_data_value(column)
+    except:
+        pass  # Fallback to domain-specific and legacy generators
+    
     # ---------- DOMAIN-SPECIFIC GENERATION ----------
     if domain and domain in DOMAIN_SPECIFIC_GENERATORS:
         domain_generators = DOMAIN_SPECIFIC_GENERATORS[domain]
@@ -198,3 +206,7 @@ def generate_row(columns: list[str]) -> dict:
     Generate a single row of data.
     """
     return {col: generate_value(col) for col in columns}
+
+def get_available_data_types():
+    """Get all available data types for API reference"""
+    return get_supported_data_types()

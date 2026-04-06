@@ -6,7 +6,7 @@ from app.core.generator import generate_value, get_domain_context
 GENERATED_DIR = "generated"
 
 
-def write_csv_streaming(columns: list[str], count: int) -> str:
+def write_csv_streaming(columns: list[dict], count: int) -> str:
     """
     Write generated data to a CSV file using streaming approach for large datasets.
     Optimized for memory efficiency with very large datasets.
@@ -15,6 +15,10 @@ def write_csv_streaming(columns: list[str], count: int) -> str:
     if not columns:
         raise ValueError("No columns provided")
 
+    # Extract column names and types
+    column_names = [col["name"] for col in columns]
+    column_types = {col["name"]: col["type"] for col in columns}
+
     # Ensure output directory exists
     os.makedirs(GENERATED_DIR, exist_ok=True)
 
@@ -22,10 +26,10 @@ def write_csv_streaming(columns: list[str], count: int) -> str:
     file_path = os.path.join(GENERATED_DIR, filename)
 
     # Get domain context once for efficiency
-    domain = get_domain_context(columns)
+    domain = get_domain_context(column_names)
 
     with open(file_path, mode="w", newline="", encoding="utf-8", buffering=8192) as f:
-        writer = csv.DictWriter(f, fieldnames=columns)
+        writer = csv.DictWriter(f, fieldnames=column_names)
         writer.writeheader()
         f.flush()  # Ensure header is written immediately
         
@@ -45,7 +49,7 @@ def write_csv_streaming(columns: list[str], count: int) -> str:
             
             # Generate and write batch
             for _ in range(batch_start, batch_end):
-                row = {column: generate_value(column, domain) for column in columns}
+                row = {col["name"]: generate_value(col["type"], domain) for col in columns}
                 writer.writerow(row)
                 rows_written += 1
             

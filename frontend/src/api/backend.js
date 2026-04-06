@@ -29,3 +29,9 @@ export async function generateCSV(columns, rows) {
   if (!res.ok) throw new Error("Failed to generate CSV");
   return res.json();
 }
+
+export async function getDataTypes() {
+  const res = await fetch(`${BASE_URL}/data-types`);
+  if (!res.ok) throw new Error("Failed to fetch data types");
+  return res.json();
+}

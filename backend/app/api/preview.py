@@ -6,10 +6,10 @@ router = APIRouter()
 
 @router.post("/")
 def preview_data(req: PreviewRequest):
-    domain = get_domain_context(req.columns)
+    domain = get_domain_context([col["name"] for col in req.columns])
     preview = [
-        {c: generate_value(c, domain) for c in req.columns}
-        for _ in range(100)
+        {col["name"]: generate_value(col["type"], domain) for col in req.columns}
+        for _ in range(10)  # Generate 10 preview rows
     ]
     return {
         "columns": req.columns,

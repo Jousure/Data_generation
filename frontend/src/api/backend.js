@@ -6,6 +6,7 @@ export async function getSchema(prompt) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ prompt }),
   });
+  if (!res.ok) throw new Error("Failed to generate schema");
   return res.json();
 }
 
@@ -15,6 +16,7 @@ export async function getPreview(columns) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ columns }),
   });
+  if (!res.ok) throw new Error("Failed to generate preview");
   return res.json();
 }
 
@@ -24,5 +26,6 @@ export async function generateCSV(columns, rows) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ columns, rows }),
   });
+  if (!res.ok) throw new Error("Failed to generate CSV");
   return res.json();
 }
